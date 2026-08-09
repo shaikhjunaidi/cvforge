@@ -6,6 +6,7 @@ import EducationForm from '../components/forms/EducationForm';
 import ExperienceForm from '../components/forms/ExperienceForm';
 import SkillsForm from '../components/forms/SkillsForm';
 import AdditionalForm from '../components/forms/AdditionalForm';
+import html2pdf from 'html2pdf.js';
 import CVPreview from '../components/CVPreview';
 import { Download, Trash2, LayoutTemplate, Palette, Upload, Save, Type } from 'lucide-react';
 
@@ -157,32 +158,32 @@ const CreateCV = () => {
   const handleGeneratePDF = async () => {
     setIsGenerating(true);
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-      const response = await fetch(`${apiUrl}/api/generate-pdf`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(cvData)
-      });
-
-      if (!response.ok) throw new Error('Failed to generate PDF');
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
+      const element = cvContentRef.current;
+      
+      // Temporarily remove scaling for crisp PDF generation
+      const originalTransform = element.style.transform;
+      element.style.transform = 'scale(1)';
       
       const fileName = cvData.personalInfo.fullName 
         ? `${cvData.personalInfo.fullName.replace(/\s+/g, '_')}_CV.pdf` 
         : 'My_CV.pdf';
         
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      const opt = {
+        margin:       0,
+        filename:     fileName,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      await html2pdf().set(opt).from(element).save();
+      
+      // Restore scaling
+      element.style.transform = originalTransform;
+      
     } catch (error) {
-      console.error(error);
-      alert("Something went wrong while generating your PDF. Please try again.");
+      console.error('Error generating PDF:', error);
+      alert('Failed to generate PDF. Please try again.');
     } finally {
       setIsGenerating(false);
     }
