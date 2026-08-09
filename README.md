@@ -39,9 +39,7 @@ npm run dev
 ```
 The client will be available on `http://localhost:5173`.
 
-## 📸 Screenshots
 
-*(Add screenshots of your templates here)*
 
 ## 📄 License
 
