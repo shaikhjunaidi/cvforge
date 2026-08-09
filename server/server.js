@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
+const chromium = require('@sparticuz/chromium');
 const path = require('path');
 const fs = require('fs');
 
@@ -17,9 +18,20 @@ app.post('/api/generate-pdf', async (req, res) => {
     // Generate HTML based on the template
     const htmlContent = generateHTML(cvData);
 
+    const isLocal = process.env.NODE_ENV !== 'production';
+    
+    // For local development, you might need to specify the path to your local Chrome/Chromium
+    // On Windows, it's typically: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+    const localExecutablePath = process.platform === 'win32' 
+      ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe' 
+      : (process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : '/usr/bin/google-chrome');
+
     const browser = await puppeteer.launch({
-      headless: "new",
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: isLocal ? ['--no-sandbox', '--disable-setuid-sandbox'] : chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: isLocal ? localExecutablePath : await chromium.executablePath(),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
     });
     
     const page = await browser.newPage();
