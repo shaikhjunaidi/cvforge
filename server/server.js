@@ -17,9 +17,11 @@ app.post('/api/generate-pdf', async (req, res) => {
     // Generate HTML based on the template
     const htmlContent = generateHTML(cvData);
 
+    const isProduction = process.env.NODE_ENV === 'production';
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      headless: "new"
+      headless: "new",
+      executablePath: isProduction ? '/usr/bin/google-chrome' : undefined
     });
     
     const page = await browser.newPage();
