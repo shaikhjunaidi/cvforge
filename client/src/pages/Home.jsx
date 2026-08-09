@@ -4,27 +4,38 @@ import { FileText, Edit, Eye, Download, LayoutTemplate } from 'lucide-react';
 const Home = () => {
   return (
     <div className="home-page">
-      {/* Hero Section */}
       <section className="hero" style={{ 
-        padding: '4rem 0', 
+        padding: '5rem 0', 
         textAlign: 'center', 
-        backgroundColor: 'var(--primary)', 
+        background: 'linear-gradient(135deg, var(--primary) 0%, #2e3875 100%)', 
         color: 'white',
-        borderBottom: '4px solid #4F5B93'
+        position: 'relative',
+        overflow: 'hidden',
+        borderBottom: '4px solid #1a2254'
       }}>
-        <div className="container">
-          <h1 style={{ fontSize: '3rem', marginBottom: '1rem', fontWeight: 'bold' }}>
-            Create Your Professional CV in Minutes
+        {/* Subtle background decoration */}
+        <div style={{ position: 'absolute', top: '-10%', right: '-5%', opacity: 0.1, transform: 'rotate(15deg)' }}>
+          <FileText size={400} />
+        </div>
+        
+        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ backgroundColor: 'white', color: 'var(--primary)', padding: '15px', borderRadius: '16px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)' }}>
+              <FileText size={48} strokeWidth={2} />
+            </div>
+          </div>
+          <h1 style={{ fontSize: '3.5rem', marginBottom: '1rem', fontWeight: '800', letterSpacing: '-1px' }}>
+            Build a Winning CV with <span style={{ color: '#93c5fd' }}>CVForge</span>
           </h1>
-          <p style={{ fontSize: '1.25rem', marginBottom: '2rem', opacity: '0.9', maxWidth: '800px', margin: '0 auto 2rem' }}>
-            Enter your details, choose a professional template, preview your CV and download it as a PDF.
+          <p style={{ fontSize: '1.25rem', marginBottom: '2.5rem', opacity: '0.9', maxWidth: '800px', margin: '0 auto 2.5rem' }}>
+            The fast, easy, and completely free way to generate professional, beautifully-formatted resumes. Choose a template and get hired faster.
           </p>
           <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-            <Link to="/create" className="btn btn-secondary" style={{ fontSize: '1.125rem', padding: '0.75rem 2rem' }}>
-              Create My CV
+            <Link to="/create" className="btn btn-secondary" style={{ fontSize: '1.125rem', padding: '0.875rem 2.5rem', fontWeight: 'bold', boxShadow: '0 4px 14px 0 rgba(255, 255, 255, 0.2)' }}>
+              Create My CV Now
             </Link>
-            <Link to="/templates" className="btn btn-primary" style={{ border: '1px solid white', fontSize: '1.125rem', padding: '0.75rem 2rem' }}>
-              View Templates
+            <Link to="/templates" className="btn" style={{ border: '1px solid rgba(255,255,255,0.4)', backgroundColor: 'transparent', color: 'white', fontSize: '1.125rem', padding: '0.875rem 2.5rem', fontWeight: 'bold' }}>
+              Explore Templates
             </Link>
           </div>
         </div>
@@ -99,6 +110,21 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {/* Footer Branding */}
+      <footer style={{ backgroundColor: 'var(--secondary)', color: 'white', padding: '3rem 0 2rem 0', textAlign: 'center' }}>
+        <div className="container">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '1rem' }}>
+            <FileText size={28} color="#93c5fd" />
+            <span style={{ fontSize: '1.75rem', fontWeight: '800', letterSpacing: '-0.5px' }}>CVForge</span>
+          </div>
+          <p style={{ opacity: 0.7, maxWidth: '500px', margin: '0 auto 2rem' }}>
+            Empowering professionals to build standout resumes effortlessly. Your career journey starts here.
+          </p>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '2rem', fontSize: '0.875rem', opacity: 0.5 }}>
+            &copy; {new Date().getFullYear()} CVForge. All rights reserved.
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

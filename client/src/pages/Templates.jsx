@@ -70,8 +70,8 @@ const Templates = () => {
                 <Check size={20} />
               </div>
             )}
-            <div style={{ height: '250px', backgroundColor: '#f1f5f9', marginBottom: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', overflow: 'hidden', paddingTop: '10px' }}>
-               <div style={{ transform: 'scale(0.22)', transformOrigin: 'top center', pointerEvents: 'none' }}>
+            <div style={{ position: 'relative', height: '250px', width: '100%', backgroundColor: '#f1f5f9', marginBottom: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+               <div style={{ position: 'absolute', top: '10px', left: '50%', transform: 'translateX(-50%) scale(0.22)', transformOrigin: 'top center', pointerEvents: 'none' }}>
                   <CVPreview data={{ 
                     ...cvData, 
                     selectedTemplate: tpl.id, 

@@ -13,8 +13,11 @@ const Navbar = () => {
   return (
     <header className="navbar">
       <div className="container flex-between">
-        <Link to="/" className="navbar-logo">
-          CVForge
+        <Link to="/" className="navbar-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <div style={{ backgroundColor: 'var(--primary)', color: 'white', padding: '6px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px -1px rgba(74, 85, 162, 0.4)' }}>
+            <FileText size={24} strokeWidth={2.5} />
+          </div>
+          <span style={{ fontWeight: '800', letterSpacing: '-0.5px', color: 'var(--primary)', fontSize: '1.5rem' }}>CVForge</span>
         </Link>
         <nav className="navbar-links">
           <Link to="/" className={isActive('/')}>

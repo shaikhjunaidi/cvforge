@@ -386,16 +386,17 @@ const CreateCV = () => {
           ref={previewContainerRef}
           style={{ 
             width: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '16px 0',
-            height: scale < 1 ? `${contentHeight * scale + 32}px` : 'auto',
-            overflow: 'visible'
+            position: 'relative',
+            height: `${contentHeight * scale + 32}px`,
+            overflow: 'hidden'
         }}>
           <div 
             ref={cvContentRef}
             style={{ 
-            transform: `scale(${scale})`, 
+            position: 'absolute',
+            top: '16px',
+            left: '50%',
+            transform: `translateX(-50%) scale(${scale})`, 
             transformOrigin: 'top center',
             transition: 'transform 0.2s ease',
             width: '210mm'
