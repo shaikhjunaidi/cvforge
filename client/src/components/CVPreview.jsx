@@ -25,7 +25,9 @@ const CVPreview = ({ data }) => {
 
   return (
     <div className="a4-preview-container">
-      {renderTemplate()}
+      <div id="pdf-content" style={{ width: '176mm' }}>
+        {renderTemplate()}
+      </div>
     </div>
   );
 };

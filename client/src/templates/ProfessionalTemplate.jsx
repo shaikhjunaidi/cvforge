@@ -95,7 +95,7 @@ const ProfessionalTemplate = ({ data }) => {
         switch (section) {
           case 'objective':
             return objective ? (
-              <div key="objective">
+              <div key="objective" className="avoid-break">
                 <div style={styles.sectionTitle}>Career Objective</div>
                 <p>{objective}</p>
               </div>
@@ -103,9 +103,9 @@ const ProfessionalTemplate = ({ data }) => {
           case 'experience':
             return experience.length > 0 ? (
               <div key="experience">
-                <div style={styles.sectionTitle}>Work Experience</div>
+                <div style={styles.sectionTitle} className="avoid-break">Work Experience</div>
                 {experience.map((exp) => (
-                  <div key={exp.id} style={styles.contentBlock}>
+                  <div key={exp.id} style={styles.contentBlock} className="section-block">
                     <div style={styles.flexRow}>
                       <div style={styles.bold}>{exp.designation}</div>
                       <div>{exp.startDate} to {exp.current ? 'Present' : exp.endDate}</div>
@@ -127,9 +127,9 @@ const ProfessionalTemplate = ({ data }) => {
           case 'education':
             return education.length > 0 ? (
               <div key="education">
-                <div style={styles.sectionTitle}>Educational Qualification</div>
+                <div style={styles.sectionTitle} className="avoid-break">Educational Qualification</div>
                 <table style={styles.table}>
-                  <thead>
+                  <thead className="avoid-break">
                     <tr>
                       <th style={{...styles.th, textAlign: 'left', width: '20%'}}>Qualification</th>
                       <th style={{...styles.th, textAlign: 'left', width: '20%'}}>Board / University</th>
@@ -140,7 +140,7 @@ const ProfessionalTemplate = ({ data }) => {
                   </thead>
                   <tbody>
                     {education.map((edu) => (
-                      <tr key={edu.id}>
+                      <tr key={edu.id} className="avoid-break">
                         <td style={{...styles.td, textAlign: 'left'}}>{edu.qualification}</td>
                         <td style={{...styles.td, textAlign: 'left'}}>{edu.board}</td>
                         <td style={{...styles.td, textAlign: 'left'}}>{edu.institute}</td>
@@ -154,7 +154,7 @@ const ProfessionalTemplate = ({ data }) => {
             ) : null;
           case 'skills':
             return skills.length > 0 ? (
-              <div key="skills">
+              <div key="skills" className="avoid-break">
                 <div style={styles.sectionTitle}>Technical Skills</div>
                 <ul style={{ ...styles.list, display: 'flex', flexWrap: 'wrap', gap: '20px', listStyleType: 'square' }}>
                   {skills.map((skill, i) => (
@@ -167,26 +167,26 @@ const ProfessionalTemplate = ({ data }) => {
             return (
               <React.Fragment key="additional">
                 {additional.certifications.include && additional.certifications.text && (
-                  <div>
-                    <div style={styles.sectionTitle}>Certifications</div>
+                  <div className="section-block">
+                    <div style={styles.sectionTitle} className="avoid-break">Certifications</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.certifications.text}</div>
                   </div>
                 )}
                 {additional.achievements.include && additional.achievements.text && (
-                  <div>
-                    <div style={styles.sectionTitle}>Achievements</div>
+                  <div className="section-block">
+                    <div style={styles.sectionTitle} className="avoid-break">Achievements</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.achievements.text}</div>
                   </div>
                 )}
                 {additional.hobbies.include && additional.hobbies.text && (
-                  <div>
-                    <div style={styles.sectionTitle}>Hobbies & Interests</div>
+                  <div className="section-block">
+                    <div style={styles.sectionTitle} className="avoid-break">Hobbies & Interests</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.hobbies.text}</div>
                   </div>
                 )}
                 {additional.passport.include && additional.passport.number && (
-                  <div>
-                    <div style={styles.sectionTitle}>Passport Details</div>
+                  <div className="section-block">
+                    <div style={styles.sectionTitle} className="avoid-break">Passport Details</div>
                     <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: '5px' }}>
                       <div style={styles.bold}>Passport Number:</div><div>{additional.passport.number}</div>
                       {additional.passport.placeOfIssue && <><div style={styles.bold}>Place of Issue:</div><div>{additional.passport.placeOfIssue}</div></>}
@@ -203,7 +203,7 @@ const ProfessionalTemplate = ({ data }) => {
       })}
 
       {/* Personal Details */}
-      <div>
+      <div className="avoid-break">
         <div style={styles.sectionTitle}>Personal Profile</div>
         <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: '5px' }}>
           {personalInfo.fullName && <><div style={styles.bold}>Name:</div><div>{personalInfo.fullName}</div></>}
@@ -217,7 +217,7 @@ const ProfessionalTemplate = ({ data }) => {
       </div>
 
       {/* Declaration */}
-      <div style={{ marginTop: '30px' }}>
+      <div style={{ marginTop: '30px' }} className="avoid-break">
         <div style={styles.sectionTitle}>Declaration</div>
         <p>I hereby declare that all the above-mentioned information is true and correct to the best of my knowledge and belief.</p>
         <div style={{ marginTop: '30px', display: 'flex', justifyContent: 'space-between' }}>

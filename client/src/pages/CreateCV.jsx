@@ -158,28 +158,23 @@ const CreateCV = () => {
   const handleGeneratePDF = async () => {
     setIsGenerating(true);
     try {
-      const element = cvContentRef.current;
-      
-      // Temporarily remove scaling for crisp PDF generation
-      const originalTransform = element.style.transform;
-      element.style.transform = 'scale(1)';
+      // The inner element that represents the printable area
+      const element = document.getElementById('pdf-content');
       
       const fileName = cvData.personalInfo.fullName 
         ? `${cvData.personalInfo.fullName.replace(/\s+/g, '_')}_CV.pdf` 
         : 'My_CV.pdf';
         
       const opt = {
-        margin:       0,
+        margin:       [18, 17, 18, 17], // top, right, bottom, left in mm
         filename:     fileName,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2, useCORS: true, letterRendering: true },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak:    { mode: ['css', 'legacy'] }
       };
 
       await html2pdf().set(opt).from(element).save();
-      
-      // Restore scaling
-      element.style.transform = originalTransform;
       
     } catch (error) {
       console.error('Error generating PDF:', error);

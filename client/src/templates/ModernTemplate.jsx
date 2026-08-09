@@ -85,7 +85,7 @@ const ModernTemplate = ({ data }) => {
           switch (section) {
             case 'objective':
               return objective ? (
-                <div key="objective">
+                <div key="objective" className="avoid-break">
                   <div style={styles.sectionTitle}>PROFESSIONAL SUMMARY</div>
                   <p>{objective}</p>
                 </div>
@@ -93,9 +93,9 @@ const ModernTemplate = ({ data }) => {
             case 'experience':
               return experience.length > 0 ? (
                 <div key="experience">
-                  <div style={styles.sectionTitle}>EXPERIENCE</div>
+                  <div style={styles.sectionTitle} className="avoid-break">EXPERIENCE</div>
                   {experience.map((exp) => (
-                    <div key={exp.id} style={styles.contentBlock}>
+                    <div key={exp.id} style={styles.contentBlock} className="section-block">
                       <div style={styles.gridRow}>
                         <div style={{ ...styles.bold, fontSize: '12pt' }}>{exp.designation}</div>
                         <div style={{ fontSize: '10pt', color: '#64748b', fontWeight: '500' }}>{exp.startDate} – {exp.current ? 'Present' : exp.endDate}</div>
@@ -117,9 +117,9 @@ const ModernTemplate = ({ data }) => {
             case 'education':
               return education.length > 0 ? (
                 <div key="education">
-                  <div style={styles.sectionTitle}>EDUCATION</div>
+                  <div style={styles.sectionTitle} className="avoid-break">EDUCATION</div>
                   {education.map((edu) => (
-                    <div key={edu.id} style={styles.contentBlock}>
+                    <div key={edu.id} style={styles.contentBlock} className="section-block">
                       <div style={styles.gridRow}>
                         <div style={styles.bold}>{edu.qualification}</div>
                         <div style={{ fontSize: '10pt', color: '#64748b' }}>{edu.year}</div>
@@ -132,7 +132,7 @@ const ModernTemplate = ({ data }) => {
               ) : null;
             case 'skills':
               return skills.length > 0 ? (
-                <div key="skills">
+                <div key="skills" className="avoid-break">
                   <div style={styles.sectionTitle}>SKILLS</div>
                   <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                     {skills.map((skill, i) => (
@@ -145,20 +145,20 @@ const ModernTemplate = ({ data }) => {
               return (
                 <React.Fragment key="additional">
                   {additional.certifications.include && additional.certifications.text && (
-                    <div>
-                      <div style={styles.sectionTitle}>CERTIFICATIONS</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">CERTIFICATIONS</div>
                       <div style={{ whiteSpace: 'pre-line' }}>{additional.certifications.text}</div>
                     </div>
                   )}
                   {additional.achievements.include && additional.achievements.text && (
-                    <div>
-                      <div style={styles.sectionTitle}>ACHIEVEMENTS</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">ACHIEVEMENTS</div>
                       <div style={{ whiteSpace: 'pre-line' }}>{additional.achievements.text}</div>
                     </div>
                   )}
                   {additional.hobbies.include && additional.hobbies.text && (
-                    <div>
-                      <div style={styles.sectionTitle}>HOBBIES & INTERESTS</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">HOBBIES & INTERESTS</div>
                       <div style={{ whiteSpace: 'pre-line' }}>{additional.hobbies.text}</div>
                     </div>
                   )}

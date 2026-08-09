@@ -280,14 +280,27 @@ textarea.form-control {
   box-shadow: var(--shadow-lg);
   transform-origin: top center;
   position: relative;
-  /* Add scaling logic inline via React if needed */
+  box-sizing: border-box;
+  padding: 18mm 17mm;
 }
 
 /* Template Common Styles inside A4 */
 .cv-template {
-  padding: 15mm;
+  width: 100%;
   color: #000;
   box-sizing: border-box;
+}
+
+/* Page Break Utilities */
+.avoid-break {
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.section-block {
+  page-break-inside: avoid;
+  break-inside: avoid;
+  margin-bottom: 15px;
 }
 
 .section-title {

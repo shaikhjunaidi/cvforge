@@ -81,7 +81,7 @@ const ClassicBoxedTemplate = ({ data }) => {
   };
 
   return (
-    <div className="cv-template" style={{ padding: '15mm', boxSizing: 'border-box' }}>
+    <div className="cv-template" style={{ padding: '0', boxSizing: 'border-box' }}>
       <div style={styles.container}>
         {/* Header */}
         <div style={{ ...styles.header, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -110,7 +110,7 @@ const ClassicBoxedTemplate = ({ data }) => {
           switch (section) {
             case 'objective':
               return objective ? (
-                <div key="objective">
+                <div key="objective" className="avoid-break">
                   <div style={styles.sectionTitle}>Career Objective</div>
                   <div style={styles.sectionBox}>
                     <p style={{ margin: 0 }}>{objective}</p>
@@ -120,10 +120,10 @@ const ClassicBoxedTemplate = ({ data }) => {
             case 'experience':
               return experience.length > 0 ? (
                 <div key="experience">
-                  <div style={styles.sectionTitle}>Work Experience</div>
+                  <div style={styles.sectionTitle} className="avoid-break">Work Experience</div>
                   <div style={styles.sectionBox}>
                     {experience.map((exp, index) => (
-                      <div key={exp.id} style={{ ...styles.contentBlock, borderBottom: index < experience.length - 1 ? '1px dashed #000' : 'none', paddingBottom: index < experience.length - 1 ? '10px' : '0' }}>
+                      <div key={exp.id} style={{ ...styles.contentBlock, borderBottom: index < experience.length - 1 ? '1px dashed #000' : 'none', paddingBottom: index < experience.length - 1 ? '10px' : '0' }} className="section-block">
                         <div style={styles.flexRow}>
                           <div style={styles.bold}>{exp.designation}</div>
                           <div>{exp.startDate} to {exp.current ? 'Present' : exp.endDate}</div>
@@ -146,9 +146,9 @@ const ClassicBoxedTemplate = ({ data }) => {
             case 'education':
               return education.length > 0 ? (
                 <div key="education">
-                  <div style={styles.sectionTitle}>Educational Qualification</div>
+                  <div style={styles.sectionTitle} className="avoid-break">Educational Qualification</div>
                   <table style={styles.table}>
-                    <thead>
+                    <thead className="avoid-break">
                       <tr>
                         <th style={{...styles.th, textAlign: 'left', width: '20%'}}>Qualification</th>
                         <th style={{...styles.th, textAlign: 'left', width: '20%'}}>Board / University</th>
@@ -159,7 +159,7 @@ const ClassicBoxedTemplate = ({ data }) => {
                     </thead>
                     <tbody>
                       {education.map((edu) => (
-                        <tr key={edu.id}>
+                        <tr key={edu.id} className="avoid-break">
                           <td style={{...styles.td, textAlign: 'left'}}>{edu.qualification}</td>
                           <td style={{...styles.td, textAlign: 'left'}}>{edu.board}</td>
                           <td style={{...styles.td, textAlign: 'left'}}>{edu.institute}</td>
@@ -173,7 +173,7 @@ const ClassicBoxedTemplate = ({ data }) => {
               ) : null;
             case 'skills':
               return skills.length > 0 ? (
-                <div key="skills">
+                <div key="skills" className="avoid-break">
                   <div style={styles.sectionTitle}>Technical Skills</div>
                   <div style={styles.sectionBox}>
                     <ul style={{ margin: 0, paddingLeft: '20px', display: 'flex', flexWrap: 'wrap', gap: '20px', listStyleType: 'square' }}>
@@ -188,32 +188,32 @@ const ClassicBoxedTemplate = ({ data }) => {
               return (
                 <React.Fragment key="additional">
                   {additional.certifications.include && additional.certifications.text && (
-                    <div>
-                      <div style={styles.sectionTitle}>Certifications</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">Certifications</div>
                       <div style={styles.sectionBox}>
                         <div style={{ whiteSpace: 'pre-line' }}>{additional.certifications.text}</div>
                       </div>
                     </div>
                   )}
                   {additional.achievements.include && additional.achievements.text && (
-                    <div>
-                      <div style={styles.sectionTitle}>Achievements</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">Achievements</div>
                       <div style={styles.sectionBox}>
                         <div style={{ whiteSpace: 'pre-line' }}>{additional.achievements.text}</div>
                       </div>
                     </div>
                   )}
                   {additional.hobbies.include && additional.hobbies.text && (
-                    <div>
-                      <div style={styles.sectionTitle}>Hobbies & Interests</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">Hobbies & Interests</div>
                       <div style={styles.sectionBox}>
                         <div style={{ whiteSpace: 'pre-line' }}>{additional.hobbies.text}</div>
                       </div>
                     </div>
                   )}
                   {additional.passport.include && additional.passport.number && (
-                    <div>
-                      <div style={styles.sectionTitle}>Passport Details</div>
+                    <div className="section-block">
+                      <div style={styles.sectionTitle} className="avoid-break">Passport Details</div>
                       <div style={styles.sectionBox}>
                         <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: '5px' }}>
                           <div style={styles.bold}>Passport Number:</div><div>{additional.passport.number}</div>
@@ -232,7 +232,7 @@ const ClassicBoxedTemplate = ({ data }) => {
         })}
 
         {/* Personal Details */}
-        <div>
+        <div className="avoid-break">
           <div style={styles.sectionTitle}>Personal Profile</div>
           <div style={styles.sectionBox}>
             <div style={{ display: 'grid', gridTemplateColumns: '150px 1fr', gap: '5px' }}>
@@ -248,7 +248,7 @@ const ClassicBoxedTemplate = ({ data }) => {
         </div>
 
         {/* Declaration */}
-        <div style={{ marginTop: '20px' }}>
+        <div style={{ marginTop: '20px' }} className="avoid-break">
           <div style={styles.sectionTitle}>Declaration</div>
           <div style={styles.sectionBox}>
             <p style={{ margin: '0 0 30px 0' }}>I hereby declare that all the above-mentioned information is true and correct to the best of my knowledge and belief.</p>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCV } from '../context/CVContext';
 import { Check } from 'lucide-react';
+import CVPreview from '../components/CVPreview';
 
 const Templates = () => {
   const { cvData, updateTemplate } = useCV();
@@ -69,18 +70,24 @@ const Templates = () => {
                 <Check size={20} />
               </div>
             )}
-            <div style={{ height: '250px', backgroundColor: '#f1f5f9', marginBottom: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-               {/* Placeholder for template preview image */}
-               <div style={{ width: '80%', height: '90%', backgroundColor: 'white', boxShadow: 'var(--shadow-sm)', padding: '1rem', borderTop: `8px solid ${tpl.color}` }}>
-                  <div style={{ width: '40%', height: '8px', backgroundColor: '#cbd5e1', marginBottom: '1rem' }}></div>
-                  <div style={{ width: '100%', height: '4px', backgroundColor: '#e2e8f0', marginBottom: '0.5rem' }}></div>
-                  <div style={{ width: '80%', height: '4px', backgroundColor: '#e2e8f0', marginBottom: '2rem' }}></div>
-                  
-                  <div style={{ width: '30%', height: '6px', backgroundColor: '#cbd5e1', marginBottom: '0.5rem' }}></div>
-                  <div style={{ width: '100%', height: '30px', backgroundColor: '#f8fafc', marginBottom: '1rem' }}></div>
-
-                  <div style={{ width: '30%', height: '6px', backgroundColor: '#cbd5e1', marginBottom: '0.5rem' }}></div>
-                  <div style={{ width: '100%', height: '30px', backgroundColor: '#f8fafc', marginBottom: '1rem' }}></div>
+            <div style={{ height: '250px', backgroundColor: '#f1f5f9', marginBottom: '1rem', borderRadius: 'var(--radius-sm)', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', overflow: 'hidden', paddingTop: '10px' }}>
+               <div style={{ transform: 'scale(0.22)', transformOrigin: 'top center', pointerEvents: 'none' }}>
+                  <CVPreview data={{ 
+                    ...cvData, 
+                    selectedTemplate: tpl.id, 
+                    themeColor: tpl.color,
+                    personalInfo: {
+                      ...cvData.personalInfo,
+                      fullName: cvData.personalInfo.fullName || 'YOUR NAME',
+                      professionalTitle: cvData.personalInfo.professionalTitle || 'Professional Title',
+                      email: cvData.personalInfo.email || 'email@example.com',
+                      phone: cvData.personalInfo.phone || '+1 234 567 8900'
+                    },
+                    objective: cvData.objective || 'A highly motivated professional seeking to apply my skills and experience in a dynamic environment.',
+                    experience: cvData.experience.length > 0 ? cvData.experience : [{ id: 1, designation: 'Job Title', company: 'Company Name', startDate: '2020', endDate: 'Present', responsibilities: ['Key responsibility or achievement goes here.'] }],
+                    education: cvData.education.length > 0 ? cvData.education : [{ id: 1, qualification: 'Degree/Qualification', board: 'University', institute: 'Institute Name', year: '2023', score: 'GPA' }],
+                    skills: cvData.skills.length > 0 ? cvData.skills : ['Skill 1', 'Skill 2', 'Skill 3', 'Skill 4']
+                  }} />
                </div>
             </div>
             <h3 style={{ marginBottom: '0.5rem' }}>{tpl.name}</h3>

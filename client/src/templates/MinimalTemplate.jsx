@@ -11,7 +11,7 @@ const MinimalTemplate = ({ data }) => {
       fontSize: '10pt',
       lineHeight: '1.6',
       color: '#334155',
-      padding: '40px'
+      padding: '0'
     },
     header: {
       marginBottom: '30px',
@@ -77,18 +77,18 @@ const MinimalTemplate = ({ data }) => {
         switch (section) {
           case 'objective':
             return objective ? (
-              <div key="objective" style={styles.section}>
+              <div key="objective" style={styles.section} className="avoid-break">
                 <div style={styles.sectionTitle}>Profile</div>
                 <div>{objective}</div>
               </div>
             ) : null;
           case 'experience':
             return experience.length > 0 ? (
-              <div key="experience" style={styles.section}>
+              <div key="experience" style={styles.section} className="avoid-break">
                 <div style={styles.sectionTitle}>Experience</div>
                 <div>
                   {experience.map((exp) => (
-                    <div key={exp.id} style={styles.contentBlock}>
+                    <div key={exp.id} style={styles.contentBlock} className="section-block">
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={styles.bold}>{exp.designation}</div>
                         <div style={styles.subText}>{exp.startDate} – {exp.current ? 'Present' : exp.endDate}</div>
@@ -108,11 +108,11 @@ const MinimalTemplate = ({ data }) => {
             ) : null;
           case 'education':
             return education.length > 0 ? (
-              <div key="education" style={styles.section}>
+              <div key="education" style={styles.section} className="avoid-break">
                 <div style={styles.sectionTitle}>Education</div>
                 <div>
                   {education.map((edu) => (
-                    <div key={edu.id} style={styles.contentBlock}>
+                    <div key={edu.id} style={styles.contentBlock} className="section-block">
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <div style={styles.bold}>{edu.qualification}</div>
                         <div style={styles.subText}>{edu.year}</div>
@@ -125,7 +125,7 @@ const MinimalTemplate = ({ data }) => {
             ) : null;
           case 'skills':
             return skills.length > 0 ? (
-              <div key="skills" style={styles.section}>
+              <div key="skills" style={styles.section} className="avoid-break">
                 <div style={styles.sectionTitle}>Skills</div>
                 <div>
                   {skills.join(' • ')}
@@ -136,25 +136,25 @@ const MinimalTemplate = ({ data }) => {
             return (
               <React.Fragment key="additional">
                 {additional.certifications.include && additional.certifications.text && (
-                  <div style={styles.section}>
+                  <div style={styles.section} className="avoid-break section-block">
                     <div style={styles.sectionTitle}>Certifications</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.certifications.text}</div>
                   </div>
                 )}
                 {additional.achievements.include && additional.achievements.text && (
-                  <div style={styles.section}>
+                  <div style={styles.section} className="avoid-break section-block">
                     <div style={styles.sectionTitle}>Achievements</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.achievements.text}</div>
                   </div>
                 )}
                 {additional.hobbies.include && additional.hobbies.text && (
-                  <div style={styles.section}>
+                  <div style={styles.section} className="avoid-break section-block">
                     <div style={styles.sectionTitle}>Hobbies</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.hobbies.text}</div>
                   </div>
                 )}
                 {additional.languages.include && additional.languages.text && (
-                  <div style={styles.section}>
+                  <div style={styles.section} className="avoid-break section-block">
                     <div style={styles.sectionTitle}>Languages</div>
                     <div style={{ whiteSpace: 'pre-line' }}>{additional.languages.text}</div>
                   </div>

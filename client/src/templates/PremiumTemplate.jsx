@@ -129,7 +129,7 @@ const PremiumTemplate = ({ data }) => {
             switch (section) {
               case 'objective':
                 return objective ? (
-                  <div key="objective">
+                  <div key="objective" className="avoid-break">
                     <div style={styles.mainSectionTitle}>Professional Summary</div>
                     <p style={{ textAlign: 'justify' }}>{objective}</p>
                   </div>
@@ -137,9 +137,9 @@ const PremiumTemplate = ({ data }) => {
               case 'experience':
                 return experience && experience.length > 0 ? (
                   <div key="experience">
-                    <div style={styles.mainSectionTitle}>Experience</div>
+                    <div style={styles.mainSectionTitle} className="avoid-break">Experience</div>
                     {experience.map(exp => (
-                      <div key={exp.id} style={styles.contentBlock}>
+                      <div key={exp.id} style={styles.contentBlock} className="section-block">
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '700', fontSize: '11pt', color: '#1e293b' }}>
                           <div>{exp.designation}</div>
                           <div style={{ color: themeColor, fontSize: '9.5pt' }}>{exp.startDate} to {exp.current ? 'Present' : exp.endDate}</div>
@@ -159,9 +159,9 @@ const PremiumTemplate = ({ data }) => {
               case 'education':
                 return education && education.length > 0 ? (
                   <div key="education">
-                    <div style={styles.mainSectionTitle}>Education</div>
+                    <div style={styles.mainSectionTitle} className="avoid-break">Education</div>
                     {education.map(edu => (
-                      <div key={edu.id} style={styles.contentBlock}>
+                      <div key={edu.id} style={styles.contentBlock} className="section-block">
                         <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: '700' }}>
                           <div>{edu.qualification}</div>
                           <div style={{ color: themeColor, fontSize: '9.5pt' }}>{edu.year}</div>
@@ -176,13 +176,13 @@ const PremiumTemplate = ({ data }) => {
                 return (
                   <div key="additional">
                     {additional && additional.achievements && additional.achievements.include && additional.achievements.text && (
-                      <div style={styles.contentBlock}>
+                      <div style={styles.contentBlock} className="section-block avoid-break">
                         <div style={styles.mainSectionTitle}>Achievements</div>
                         <p>{additional.achievements.text}</p>
                       </div>
                     )}
                     {additional && additional.certifications && additional.certifications.include && additional.certifications.text && (
-                      <div style={styles.contentBlock}>
+                      <div style={styles.contentBlock} className="section-block avoid-break">
                         <div style={styles.mainSectionTitle}>Certifications</div>
                         <p>{additional.certifications.text}</p>
                       </div>
